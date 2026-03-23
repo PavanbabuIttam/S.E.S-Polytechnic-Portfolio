@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>S.E.S. Polytechnic, Solapur</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      background: #f9f9f9;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: #1a3a6e;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 6px;
+    }
+    header p {
+      font-size: 1rem;
+      color: #ccdaff;
+      margin-bottom: 4px;
+    }
+    header .tagline {
+      font-size: 0.9rem;
+      color: #f0c040;
+      margin-top: 8px;
+      letter-spacing: 1px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: #122d58;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    nav a {
+      color: #ccdaff;
+      text-decoration: none;
+      padding: 12px 20px;
+      font-size: 0.88rem;
+      display: block;
+      transition: background 0.2s;
+    }
+    nav a:hover {
+      background: #1a3a6e;
+      color: #f0c040;
+    }
+
+    /* ── SECTION ── */
+    section {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    section h2 {
+      font-size: 1.5rem;
+      color: #1a3a6e;
+      border-left: 4px solid #f0c040;
+      padding-left: 12px;
+      margin-bottom: 20px;
+    }
+
+    /* ── ABOUT ── */
+    .about-box {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      line-height: 1.8;
+      font-size: 0.95rem;
+      color: #444;
+    }
+    .about-box p { margin-bottom: 12px; }
+    .about-box p:last-child { margin-bottom: 0; }
+
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .info-pill {
+      background: #eef2ff;
+      border: 1px solid #c0cff0;
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      color: #1a3a6e;
+      font-weight: bold;
+    }
+
+    /* ── STATS ── */
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .stat-box {
+      flex: 1;
+      min-width: 140px;
+      background: #1a3a6e;
+      color: white;
+      text-align: center;
+      border-radius: 8px;
+      padding: 20px 10px;
+    }
+    .stat-box .num {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #f0c040;
+    }
+    .stat-box .lbl {
+      font-size: 0.8rem;
+      color: #ccdaff;
+      margin-top: 4px;
+    }
+
+    /* ── DEPARTMENTS ── */
+    .dept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .dept-card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      border-top: 3px solid #1a3a6e;
+      text-align: center;
+    }
+    .dept-card .icon { font-size: 2rem; margin-bottom: 10px; }
+    .dept-card h3 { font-size: 0.95rem; color: #1a3a6e; margin-bottom: 6px; }
+    .dept-card p { font-size: 0.78rem; color: #666; line-height: 1.5; }
+    .dept-card .badge {
+      display: inline-block;
+      margin-top: 10px;
+      background: #eef2ff;
+      color: #1a3a6e;
+      font-size: 0.72rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    /* ── FACILITIES ── */
+    .facility-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 14px;
+    }
+    .facility-item {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .facility-item .icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .facility-item h4 { font-size: 0.88rem; color: #1a3a6e; margin-bottom: 4px; }
+    .facility-item p { font-size: 0.76rem; color: #666; }
+
+    /* ── FACULTY ── */
+    .faculty-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .faculty-table th {
+      background: #1a3a6e;
+      color: white;
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+    .faculty-table td {
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      border-bottom: 1px solid #eee;
+      color: #444;
+    }
+    .faculty-table tr:last-child td { border-bottom: none; }
+    .faculty-table tr:hover td { background: #f5f8ff; }
+
+    /* ── ACHIEVEMENTS ── */
+    .achieve-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .achieve-item {
+      background: white;
+      border-radius: 8px;
+      padding: 16px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .achieve-year {
+      background: #1a3a6e;
+      color: #f0c040;
+      font-weight: bold;
+      font-size: 0.85rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .achieve-item h4 { font-size: 0.9rem; color: #1a3a6e; margin-bottom: 4px; }
+    .achieve-item p { font-size: 0.82rem; color: #666; }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .contact-info {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .contact-info h3 { font-size: 1rem; color: #1a3a6e; margin-bottom: 16px; }
+    .contact-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+    }
+    .contact-row .icon { font-size: 1.2rem; }
+    .contact-row p { font-size: 0.88rem; color: #555; line-height: 1.6; }
+
+    .contact-form {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .contact-form h3 { font-size: 1rem; color: #1a3a6e; margin-bottom: 16px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 0.82rem; margin-bottom: 5px; color: #555; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      outline: none;
+      font-family: Arial, sans-serif;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: #1a3a6e; }
+    .form-group textarea { height: 90px; resize: vertical; }
+    .btn-send {
+      width: 100%;
+      background: #1a3a6e;
+      color: white;
+      border: none;
+      padding: 11px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-send:hover { background: #122d58; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #122d58;
+      color: #aabfe0;
+      text-align: center;
+      padding: 24px 20px;
+      margin-top: 60px;
+      font-size: 0.85rem;
+    }
+    footer span { color: #f0c040; font-weight: bold; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.4rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .achieve-item { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <h1>🏛️ S.E.S. Polytechnic, Solapur</h1>
+  <p>Solapur Education Society's Polytechnic</p>
+  <p>Affiliated to MSBTE Mumbai | Approved by AICTE New Delhi</p>
+  <div class="tagline">"Shaping Engineers. Building Futures."</div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <a href="#about">About</a>
+  <a href="#departments">Departments</a>
+  <a href="#facilities">Facilities</a>
+  <a href="#faculty">Faculty</a>
+  <a href="#achievements">Achievements</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- STATS -->
+<section>
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="num">40+</div>
+      <div class="lbl">Years of Excellence</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">6</div>
+      <div class="lbl">Departments</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">5000+</div>
+      <div class="lbl">Alumni</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">50+</div>
+      <div class="lbl">Faculty Members</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">94%</div>
+      <div class="lbl">Pass Rate</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>About Us</h2>
+  <div class="about-box">
+    <p>
+      S.E.S. Polytechnic, Solapur is a reputed technical institute established in 1983, run by the
+      Solapur Education Society. Located in the heart of Solapur, Maharashtra, the institute offers
+      diploma programs in various engineering disciplines.
+    </p>
+    <p>
+      The institute is affiliated with the <strong>Maharashtra State Board of Technical Education (MSBTE), Mumbai</strong>
+      and approved by <strong>AICTE, New Delhi</strong>. With modern laboratories, experienced faculty,
+      and strong industry connections, SES Polytechnic provides quality technical education to students
+      from Solapur and surrounding regions.
+    </p>
+    <p>
+      Our focus is on practical learning, industry exposure, and overall student development — producing
+      graduates who are job-ready from day one.
+    </p>
+    <div class="info-row">
+      <span class="info-pill">📅 Est. 1983</span>
+      <span class="info-pill">🏛️ MSBTE Affiliated</span>
+      <span class="info-pill">✅ AICTE Approved</span>
+      <span class="info-pill">🎓 Diploma Programs</span>
+      <span class="info-pill">📍 Solapur, Maharashtra</span>
+    </div>
+  </div>
+</section>
+
+<!-- DEPARTMENTS -->
+<section id="departments">
+  <h2>Departments</h2>
+  <div class="dept-grid">
+    <div class="dept-card">
+      <div class="icon">⚙️</div>
+      <h3>Mechanical Engineering</h3>
+      <p>Manufacturing, CAD/CAM, Thermodynamics, Fluid Mechanics & Machine Design</p>
+      <span class="badge">3-Year Diploma</span>
+    </div>
+    <div class="dept-card">
+      <div class="icon">💡</div>
+      <h3>Electrical Engineering</h3>
+      <p>Power Systems, Electrical Machines, Control Systems & Industrial Automation</p>
+      <span class="badge">3-Year Diploma</span>
+    </div>
+    <div class="dept-card">
+      <div class="icon">🖥️</div>
+      <h3>Computer Engineering</h3>
+      <p>Programming, Networking, Databases, Web Technologies & AI Fundamentals</p>
+      <span class="badge">3-Year Diploma</span>
+    </div>
+    <div class="dept-card">
+      <div class="icon">🏗️</div>
+      <h3>Civil Engineering</h3>
+      <p>Structural Engineering, Surveying, Construction Technology & Urban Planning</p>
+      <span class="badge">3-Year Diploma</span>
+    </div>
+    <div class="dept-card">
+      <div class="icon">📡</div>
+      <h3>Electronics & Telecom</h3>
+      <p>Analog/Digital Circuits, Embedded Systems & Communication Engineering</p>
+      <span class="badge">3-Year Diploma</span>
+    </div>
+    <div class="dept-card">
+      <div class="icon">🔬</div>
+      <h3>Applied Sciences</h3>
+      <p>Physics, Chemistry, Mathematics & Communication Skills for all programs</p>
+      <span class="badge">Core Dept.</span>
+    </div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section id="facilities">
+  <h2>Facilities</h2>
+  <div class="facility-grid">
+    <div class="facility-item">
+      <div class="icon">💻</div>
+      <h4>Computer Labs</h4>
+      <p>Modern PCs with licensed software & high-speed internet</p>
+    </div>
+    <div class="facility-item">
+      <div class="icon">🔧</div>
+      <h4>Engineering Workshop</h4>
+      <p>Lathes, milling machines & welding equipment</p>
+    </div>
+    <div class="facility-item">
+      <div class="icon">🔬</div>
+      <h4>Science Labs</h4>
+      <p>Physics, Chemistry & Electronics labs for practicals</p>
+    </div>
+    <div class="facility-item">
+      <div class="icon">📚</div>
+      <h4>Library</h4>
+      <p>10,000+ books, journals & digital resources</p>
+    </div>
+    <div class="facility-item">
+      <div class="icon">🏟️</div>
+      <h4>Sports Ground</h4>
+      <p>Indoor & outdoor sports for physical fitness</p>
+    </div>
+    <div class="facility-item">
+      <div class="icon">🎭</div>
+      <h4>Seminar Hall</h4>
+      <p>300-seat hall with AV equipment for events</p>
+    </div>
+    <div class="facility-item">
+      <div class="icon">🍽️</div>
+      <h4>Canteen</h4>
+      <p>Hygienic meals at affordable prices on campus</p>
+    </div>
+    <div class="facility-item">
+      <div class="icon">🚌</div>
+      <h4>Transport</h4>
+      <p>Bus service covering major routes in Solapur</p>
+    </div>
+  </div>
+</section>
+
+<!-- FACULTY -->
+<section id="faculty">
+  <h2>Faculty</h2>
+  <table class="faculty-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Designation</th>
+        <th>Department</th>
+        <th>Qualification</th>
+        <th>Experience</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dr. R. K. Patil</td>
+        <td>Principal</td>
+        <td>Administration</td>
+        <td>M.Tech, Ph.D.</td>
+        <td>28 Years</td>
+      </tr>
+      <tr>
+        <td>Prof. S. M. Desai</td>
+        <td>HOD</td>
+        <td>Computer Engineering</td>
+        <td>M.E. (CSE)</td>
+        <td>18 Years</td>
+      </tr>
+      <tr>
+        <td>Prof. V. B. Kulkarni</td>
+        <td>HOD</td>
+        <td>Mechanical Engineering</td>
+        <td>M.Tech (Mech)</td>
+        <td>22 Years</td>
+      </tr>
+      <tr>
+        <td>Prof. A. R. Jadhav</td>
+        <td>HOD</td>
+        <td>Civil Engineering</td>
+        <td>M.E. (Civil)</td>
+        <td>15 Years</td>
+      </tr>
+      <tr>
+        <td>Prof. P. N. Shinde</td>
+        <td>HOD</td>
+        <td>Electrical Engineering</td>
+        <td>M.E. (E&P)</td>
+        <td>20 Years</td>
+      </tr>
+      <tr>
+        <td>Prof. M. S. More</td>
+        <td>HOD</td>
+        <td>Electronics & Telecom</td>
+        <td>M.E. (E&TC)</td>
+        <td>16 Years</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <h2>Achievements</h2>
+  <div class="achieve-list">
+    <div class="achieve-item">
+      <span class="achieve-year">2023</span>
+      <div>
+        <h4>100% Placement – Computer Engineering</h4>
+        <p>All graduating students placed in reputed IT companies across Pune, Bangalore & Mumbai.</p>
+      </div>
+    </div>
+    <div class="achieve-item">
+      <span class="achieve-year">2022</span>
+      <div>
+        <h4>Best Technical Institute Award – Solapur District</h4>
+        <p>Recognized by Solapur District Education Board for academic excellence and industry readiness.</p>
+      </div>
+    </div>
+    <div class="achieve-item">
+      <span class="achieve-year">2021</span>
+      <div>
+        <h4>ISO 9001:2015 Certification</h4>
+        <p>Certified for quality management systems in education and infrastructure.</p>
+      </div>
+    </div>
+    <div class="achieve-item">
+      <span class="achieve-year">2019</span>
+      <div>
+        <h4>MSBTE Research Grant</h4>
+        <p>Government funding received for applied research in renewable energy and automation.</p>
+      </div>
+    </div>
+    <div class="achieve-item">
+      <span class="achieve-year">2017</span>
+      <div>
+        <h4>National Robotics Competition – 1st Prize</h4>
+        <p>Students won first prize at IIT Bombay's Techfest robotics competition.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Institute Details</h3>
+      <div class="contact-row">
+        <span class="icon">📍</span>
+        <p>S.E.S. Polytechnic, Near Railway Station,<br>Solapur – 413 001, Maharashtra, India</p>
+      </div>
+      <div class="contact-row">
+        <span class="icon">📞</span>
+        <p>+91 217 XXX XXXX<br>+91 217 XXX XXXX</p>
+      </div>
+      <div class="contact-row">
+        <span class="icon">📧</span>
+        <p>principal@sespolytechnic.edu.in<br>admissions@sespolytechnic.edu.in</p>
+      </div>
+      <div class="contact-row">
+        <span class="icon">🌐</span>
+        <p>www.sespolytechnic.edu.in</p>
+      </div>
+      <div class="contact-row">
+        <span class="icon">🕐</span>
+        <p>Mon – Sat: 9:00 AM – 5:00 PM<br>Sunday: Closed</p>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Send a Message</h3>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter your name" />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="Enter your email" />
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <select>
+          <option>Admissions Enquiry</option>
+          <option>Academic Programs</option>
+          <option>Placement</option>
+          <option>General Enquiry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Write your message..."></textarea>
+      </div>
+      <button class="btn-send">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><span>S.E.S. Polytechnic, Solapur</span> | Solapur Education Society</p>
+  <p style="margin-top:6px;">Affiliated to MSBTE Mumbai | Approved by AICTE New Delhi | Est. 1983</p>
+  <p style="margin-top:8px; font-size:0.78rem;">© 2024 S.E.S. Polytechnic. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
